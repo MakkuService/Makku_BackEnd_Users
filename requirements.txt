@@ -1,0 +1,3 @@
+rest_framework
+drf-yasg
+crispy_forms
