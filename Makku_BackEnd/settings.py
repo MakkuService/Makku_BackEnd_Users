@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+AUTH_USER_MODEL = 'users.User'
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,10 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "users",
-    "crispy_forms",
+#    "crispy_forms",
     'rest_framework_swagger',
-    'drf_yasg'
-#    'rest_framework',
+    'drf_yasg',
+    'rest_framework',
 
 #    "users.apps.UsersConfig",
 ]
@@ -82,15 +82,18 @@ WSGI_APPLICATION = "Makku_BackEnd.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'Users',
         'USER': 'postgres',
-        'PASSWORD': 'KHAUBUEqVksziYG6L98m',
-        'HOST': 'containers-us-west-150.railway.app',
-        'PORT': '5720',
+        'PASSWORD': 'Revcrjdvjkjltw1',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
+REST_FRAMEWORK={
+    'NON_FIELD_ERROR_KEY': 'error'
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
