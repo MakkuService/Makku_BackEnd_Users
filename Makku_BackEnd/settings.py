@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import os
+import configuration
 from pathlib import Path
+
+config = configuration.read_config()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,11 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "drf_yasg",
     "users",
-    #    "crispy_forms",
-    'rest_framework_swagger',
-    'drf_yasg',
-    'rest_framework',
 
     #    "users.apps.UsersConfig",
 ]
@@ -81,16 +82,16 @@ WSGI_APPLICATION = "Makku_BackEnd.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Users',
-        'USER': 'postgres',
-        'PASSWORD': 'Revcrjdvjkjltw1',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': config['DB_Settings']['name'],
+        'USER': config['DB_Settings']['user'],
+        'PASSWORD': config['DB_Settings']['password'],
+        'HOST': config['DB_Settings']['host'],
+        'PORT': config['DB_Settings']['port'],
     }
 }
 
 REST_FRAMEWORK = {
-    'NON_FIELD_ERROR_KEY': 'error',
+    'NON_FIELD_ERRORS_KEY': 'error',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
@@ -128,17 +129,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+STATIC_URL = "/static/"
+#CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_REDIRECT_URL = 'home'
-LOGIN_URL = 'login'
+#LOGIN_REDIRECT_URL = 'schema-swagger-ui'
+#LOGIN_URL = 'schema-swagger-ui'
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'akumsk.ak@gmail.com'  # os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = 'bgifuslpdjhougnm'  # os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = config['EMAIL_Settings']['email_host']
+EMAIL_PORT = config['EMAIL_Settings']['email_port']
+EMAIL_HOST_USER = config['EMAIL_Settings']['email_host_user']
+EMAIL_HOST_PASSWORD = config['EMAIL_Settings']['email_host_password']
