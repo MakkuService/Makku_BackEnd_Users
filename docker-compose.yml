@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  web:
+    build: .
+#    build: ./Makku_Backend
+#    command: bash -c "python manage.py runserver"
+    command: python manage.py runserver 127.0.0.1:8000
+    container_name: Makku_Backend
+    volumes:
+      - .:/Makku_Backend
+#      - ./Makku_Backend/:/usr/src/Makku_Backend/
+    ports:
+      - "8000:8000"
+
+  db:
+    image: postgres:15.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Revcrjdvjkjltw1
+      - POSTGRES_DB=Users
+    ports:
+      - "5432:5432"
+volumes:
+  postgres_data:

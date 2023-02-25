@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager, PermissionsMixin)
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # Create your models here.
@@ -14,7 +15,7 @@ class UserManager(BaseUserManager):
         user = self.model(username=username, email=self.normalize_email(email))
         user.set_password(password)
         user.save()
-        return  user
+        return user
 
     def create_superuser(self, username, email, password=None):
         if password is None:
@@ -45,12 +46,15 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
     def tokens(self):
-        return ''
-
+        refresh = RefreshToken.for_user(self)
+        return {
+                'refresh':str(refresh),
+               'access':str(refresh.access_token)
+        }
 
 class auth_user_additional(models.Model):
-    city = models.CharField(max_length=40, null=True, blank=True)
-    coordinate = models.CharField(max_length=40, null=True, blank=True)
-    IP = models.CharField(max_length=20, null=True, blank=True)
-    lastpayment = models.CharField(max_length=20, null=True, blank=True)
-    description = models.CharField(max_length=200, null=True, blank=True)
+        city = models.CharField(max_length=40, null=True, blank=True)
+        coordinate = models.CharField(max_length=40, null=True, blank=True)
+        IP = models.CharField(max_length=20, null=True, blank=True)
+        lastpayment = models.CharField(max_length=20, null=True, blank=True)
+        description = models.CharField(max_length=200, null=True, blank=True)
