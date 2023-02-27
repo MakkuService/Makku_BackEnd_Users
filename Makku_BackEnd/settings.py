@@ -13,6 +13,9 @@ import configuration
 from pathlib import Path
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
+
 config = configuration.read_config()
 
 
@@ -22,14 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-SECRET_KEY = config['DJANGO_Settings']['secret_key']
-#SECRET_KEY = os.environ.get("SECRET_KEY")
+#SECRET_KEY = config['DJANGO_Settings']['secret_key']
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-#DEBUG = int(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', ' 0.0.0.0']
 
 AUTH_USER_MODEL = 'users.User'
 # Application definition
@@ -83,11 +85,11 @@ WSGI_APPLICATION = "Makku_BackEnd.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config['DB_Settings']['name'],
-        'USER': config['DB_Settings']['user'],
-        'PASSWORD': config['DB_Settings']['password'],
-        'HOST': config['DB_Settings']['host'],
-        'PORT': config['DB_Settings']['port'],
+        'NAME': os.environ.get("name"),
+        'USER': os.environ.get("user"),
+        'PASSWORD': os.environ.get("password"),
+        'HOST': os.environ.get("host"),
+        'PORT': os.environ.get("port"),
     }
 }
 

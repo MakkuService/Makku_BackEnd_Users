@@ -12,16 +12,20 @@ services:
 #      - ./Makku_Backend/:/usr/src/Makku_Backend/
     ports:
       - "8000:8000"
+    env_file:
+      - ./.env
 
   db:
     image: postgres:15.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Revcrjdvjkjltw1
-      - POSTGRES_DB=Users
+      - POSTGRES_USER=os.environ.get("user")
+      - POSTGRES_PASSWORD=os.environ.get("password")
+      - POSTGRES_DB=os.environ.get("name")
     ports:
       - "5432:5432"
+    env_file:
+      - ./.env
 volumes:
   postgres_data:

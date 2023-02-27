@@ -1,5 +1,6 @@
 FROM python:3.7.9-alpine
 
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 RUN mkdir /usr/src/Makku_Backend
