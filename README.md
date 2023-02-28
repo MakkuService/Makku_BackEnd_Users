@@ -24,9 +24,9 @@
 
 ### EndPoints
 
-- [GET] EmailVerify, parametrers: token
-- [POST] Login, parameters: Email, Password
-- [POST] Register, parameters: Email, Username, Password
+- [GET] [EmailVerify], parametrers: token
+- [POST] [Login], parameters: Email, Password
+- [POST] [Register], parameters: Email, Username, Password
 - 
 
 #### Current 
@@ -38,7 +38,6 @@
 - [X] LoginUser
 - [ ] Logout
 - [ ] Reset Password
-- [ ] 
 
 #### Bags
 - [ ] Check Docker host/port
