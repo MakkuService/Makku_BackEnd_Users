@@ -1,11 +1,11 @@
 ## Makku_Backend_Users
 
 ### Tech stack
-- [python]
-- [django]
-- [drf]
-- [jwt]
-- [swagger]
+- python
+- django
+- drf
+- jwt
+- swagger
 
 ### Layout
 
