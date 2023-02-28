@@ -3,13 +3,11 @@ version: '3'
 services:
   web:
     build: .
-#    build: ./Makku_Backend
-#    command: bash -c "python manage.py runserver"
-    command: python manage.py runserver 127.0.0.1:8000
+    command: python manage.py runserver 0.0.0.0:8000
     container_name: Makku_Backend
     volumes:
-      - .:/Makku_Backend
-#      - ./Makku_Backend/:/usr/src/Makku_Backend/
+#      - .:/Makku_Backend
+      - .:/Makku_Backend/
     ports:
       - "8000:8000"
     env_file:

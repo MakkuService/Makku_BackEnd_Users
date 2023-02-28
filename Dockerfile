@@ -7,7 +7,7 @@ RUN mkdir /usr/src/Makku_Backend
 
 WORKDIR /usr/src/Makku_Backend
 COPY . /usr/src/Makku_Backend
-#WORKDIR /usr/src/Makku_Backend
+
 
 #ADD . /Makku_Backend/
 
