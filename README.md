@@ -24,9 +24,9 @@
 
 ### EndPoints
 
-- [GET] «_»EmailVerify«_», parametrers: token
-- [POST] Login, parameters: Email, Password
-- [POST] Register, parameters: Email, Username, Password
+- [GET] «EmailVerify», parametrers: token
+- [POST] «Login», parameters: Email, Password
+- [POST] «Register», parameters: Email, Username, Password
 - 
 
 #### Current 
