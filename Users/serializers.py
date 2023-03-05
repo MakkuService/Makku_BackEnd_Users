@@ -36,7 +36,7 @@ class EmailVerificationSerializer(serializers.ModelSerializer):
 
 class LoginSerialaizer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=255)
-    password = serializers.CharField(max_length=70, min_length=6)
+    password = serializers.CharField(max_length=70, min_length=6, write_only=True)
     username = serializers.CharField(max_length=70, min_length=6, read_only=True)
     tokens = serializers.CharField(max_length=70, min_length=6, read_only=True)
 
@@ -50,6 +50,8 @@ class LoginSerialaizer(serializers.ModelSerializer):
 
         user = auth.authenticate(email=email, password=password)
 
+ #       import pdb
+ #       pdb.set_trace()
         if not user:
             raise AuthenticationFailed("Не совпадает логин или пароль, попоробуйте снова")
 

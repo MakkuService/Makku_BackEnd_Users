@@ -51,7 +51,8 @@ class User(AbstractBaseUser, PermissionsMixin):
                 'refresh':str(refresh),
                'access':str(refresh.access_token)
         }
-
+    class Meta:
+        ordering = ['created_at']
 class auth_user_additional(models.Model):
         city = models.CharField(max_length=40, null=True, blank=True)
         coordinate = models.CharField(max_length=40, null=True, blank=True)
