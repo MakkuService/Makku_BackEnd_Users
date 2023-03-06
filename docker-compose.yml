@@ -1,28 +1,29 @@
-version: '3'
+version: '3.8'
 
 services:
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
-    container_name: Makku_Backend
+#    container_name: Makku_Backend
     volumes:
-#      - .:/Makku_Backend
-      - .:/Makku_Backend/
+       - .:/code
+#      - .:/usr/src/Makku_Backend/
+#      - .:/Makku_Backend/
     ports:
       - "8000:8000"
     env_file:
       - ./.env
-
+    depends_on:
+      - db
   db:
-    image: postgres:15.0-alpine
+    image: postgres:13.0-alpine
+    restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=os.environ.get("user")
-      - POSTGRES_PASSWORD=os.environ.get("password")
-      - POSTGRES_DB=os.environ.get("name")
-    ports:
-      - "5432:5432"
+      - POSTGRES_USER=${db_user}
+      - POSTGRES_PASSWORD=${db_password}
+      - POSTGRES_DB=${db_name}
     env_file:
       - ./.env
 volumes:

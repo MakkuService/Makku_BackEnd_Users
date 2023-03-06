@@ -49,6 +49,16 @@ INSTALLED_APPS = [
 
 ]
 
+SWAGGER_SETTINGS={
+    'SECURITY_DEFINITIONS':{
+        'Bearer':{
+            'type':'apiKey',
+            'name': 'Authorization',
+            'in': 'Header'
+        }
+    }
+}
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -80,16 +90,15 @@ TEMPLATES = [
 WSGI_APPLICATION = "Makku_BackEnd.wsgi.application"
 
 # Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get("name"),
-        'USER': os.environ.get("user"),
-        'PASSWORD': os.environ.get("password"),
-        'HOST': os.environ.get("host"),
-        'PORT': os.environ.get("port"),
+        'NAME': os.environ.get("db_name"),
+        'USER': os.environ.get("db_user"),
+        'PASSWORD': os.environ.get("db_password"),
+        'HOST': os.environ.get("db_host"),
+        'PORT': os.environ.get("db_port"),
     }
 }
 
