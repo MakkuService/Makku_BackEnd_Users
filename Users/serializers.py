@@ -68,3 +68,4 @@ class LoginSerialaizer(serializers.ModelSerializer):
         }
 
         return super().validate(attrs)
+#the end
