@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', ' 0.0.0.0']
 
@@ -156,3 +156,4 @@ EMAIL_HOST = config['EMAIL_Settings']['email_host']
 EMAIL_PORT = config['EMAIL_Settings']['email_port']
 EMAIL_HOST_USER = config['EMAIL_Settings']['email_host_user']
 EMAIL_HOST_PASSWORD = config['EMAIL_Settings']['email_host_password']
+

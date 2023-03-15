@@ -4,3 +4,6 @@ venv/.env
 configurations.ini
 .ini
 .env
+.env.prod
+.env.prod.db
+

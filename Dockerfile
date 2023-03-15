@@ -4,7 +4,7 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /code
+WORKDIR /usr/src/Makku_BackEnd_Users
 COPY ./requirements.txt .
 
 RUN apk update \
@@ -19,3 +19,4 @@ EXPOSE 5432
 
 COPY . .
 
+ENTRYPOINT ["/usr/src/Makku_BackEnd_Users/entrypoint.sh"]
